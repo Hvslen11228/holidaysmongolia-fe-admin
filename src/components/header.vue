@@ -1,63 +1,71 @@
 <template>
-  <div>
-    <div>
-      <b-navbar toggleable="lg" type="dark" variant="dark">
-        <b-navbar-brand href="#">NavBar</b-navbar-brand>
+  <div
+    v-if="!Show"
+    class="bg-white border-b w-full h-16 fixed top-0 left-0 flex pl-64"
+  >
+    <div
+      class="
+        flex-1
+        text-sm text-gray-800
+        h-full
+        flex
+        items-center
+        px-4
+        font-normal
+        tracking-wide
+      "
+    >
+      <pre>{{ data[docname] }}</pre>
+    </div>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item href="#">Link</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
-          </b-navbar-nav>
-
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-            <b-nav-form>
-              <b-form-input
-                size="sm"
-                class="mr-sm-2"
-                placeholder="Search"
-              ></b-form-input>
-              <b-button size="sm" class="my-2 my-sm-0" type="submit"
-                >Search</b-button
-              >
-            </b-nav-form>
-
-            <b-nav-item-dropdown text="Lang" right>
-              <b-dropdown-item href="#">EN</b-dropdown-item>
-              <b-dropdown-item href="#">ES</b-dropdown-item>
-              <b-dropdown-item href="#">RU</b-dropdown-item>
-              <b-dropdown-item href="#">FA</b-dropdown-item>
-            </b-nav-item-dropdown>
-
-            <b-nav-item-dropdown right>
-              <!-- Using 'button-content' slot -->
-              <template #button-content>
-                <em>User</em>
-              </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
+    <div class="flex">
+      <div
+        class="
+          border-l
+          w-16
+          flex
+          items-center
+          justify-center
+          text-gray-800
+          rounded-r-lg
+          my-2
+        "
+        @click="logOut()"
+      >
+        <img
+          src="https://img.icons8.com/fluency-systems-filled/48/000000/exit.png"
+          class="h-6"
+        />
+      </div>
     </div>
   </div>
 </template>
-<script>
-export default {
+
+<script >
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "header",
   props: {
     logOut: Function,
+    Show: Function,
+    text: String,
   },
-  name: "Header",
   data() {
     return {
-      user_data: [],
+      data: {
+        "#/": "Dashboard",
+        "#/documentation": "Documentation",
+        "#/orders": "Orders",
+      },
     };
   },
-};
+  computed: {
+    docname() {
+      return this.$store.getters.pathname;
+    },
+  },
+});
 </script>
+
 <style scoped>
 </style>

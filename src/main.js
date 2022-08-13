@@ -1,13 +1,9 @@
-import Vue from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
-
-import router from "./router";
-import store from "./store";
+import router from "./router/";
+import { store } from "./store";
 import "./axios";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
-Vue.config.productionTip = false;
-
-new Vue({ router, store, render: (h) => h(App) }).$mount("#app");
+import "./assets/fonts/GTWalsheimPro/stylesheet.css";
+import "./index.css";
+console.log(`web app => ${import.meta.env.MODE}`);
+createApp(App).use(router).use(store).mount("#app");
