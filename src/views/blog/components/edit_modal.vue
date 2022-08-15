@@ -79,6 +79,7 @@
                     >
                       featuredImage
                     </label>
+                    <Upload_featuredImage :data="data" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
@@ -102,6 +103,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
+                        disabled
                       />
                     </div>
                   </div>
@@ -272,6 +274,7 @@
 </template>
 
 <script >
+import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
 import Button from "../../../components/button.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -282,7 +285,7 @@ export default defineComponent({
     delete_user: Function,
     index: Number,
   },
-  components: { Button },
+  components: { Button, Upload_featuredImage },
   data() {
     return {
       modal: {

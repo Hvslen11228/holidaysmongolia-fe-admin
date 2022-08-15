@@ -178,6 +178,7 @@
                     >
                       thumbnail
                     </label>
+                    <Upload_thumbnail :data="data" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
@@ -201,6 +202,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
+                        disabled
                       />
                     </div>
                   </div>
@@ -273,6 +275,7 @@
 
 <script >
 import Button from "../../../components/button.vue";
+import Upload_thumbnail from "../../../components/fileupload/one/thumbnail.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 export default defineComponent({
@@ -282,7 +285,7 @@ export default defineComponent({
     delete_user: Function,
     index: Number,
   },
-  components: { Button },
+  components: { Button, Upload_thumbnail },
   data() {
     return {
       modal: {

@@ -51,6 +51,7 @@
         "
         placeholder="Хайх..."
       />
+
       <Table
         v-if="!loading"
         :data="filterData"
@@ -100,6 +101,8 @@
 </template>
 
 <script >
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Button from "../../components/button.vue";
 import Table from "./components/table.vue";
 import Modal from "./components/modal.vue";
@@ -107,7 +110,7 @@ import { defineComponent } from "vue";
 import axios from "axios";
 export default defineComponent({
   name: "HomeView",
-  components: { Button, Table, Modal },
+  components: { Button, Table, Modal, ckeditor: CKEditor.component },
   data() {
     return {
       data: null,
@@ -117,6 +120,9 @@ export default defineComponent({
         show: false,
         value: "",
       },
+      editor: ClassicEditor,
+      editorData: "<p>Content of the editor.</p>",
+      editorConfig: {},
     };
   },
   computed: {

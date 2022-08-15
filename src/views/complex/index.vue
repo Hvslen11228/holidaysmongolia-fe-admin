@@ -13,7 +13,7 @@
     <div class="p-8 text-sm text-gray-800">
       <div class="flex justify-between">
         <h1 class="text-4xl text-gray-700 font-bold leading-none mb-8">
-          Complex
+          Tours
         </h1>
         <div>
           <Button
@@ -131,7 +131,7 @@ export default defineComponent({
   methods: {
     async delete_user(id, index) {
       this.data.splice(index, 1);
-      await axios.delete("complex/" + id);
+      await axios.delete("tour/" + id);
     },
   },
   created: async function () {
@@ -143,8 +143,8 @@ export default defineComponent({
   },
   mounted: async function () {
     this.$store.dispatch("pathname", location.hash);
-    const result = await axios.get("complex");
-    const result_category = await axios.get("complex_category");
+    const result = await axios.get("tour");
+    const result_category = await axios.get("category");
     this.category = result_category.data.data;
     this.data = result.data.data;
     this.loading = false;

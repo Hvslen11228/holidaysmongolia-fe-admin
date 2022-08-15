@@ -12,7 +12,7 @@
   >
     <div class="p-8 text-sm text-gray-800">
       <div class="flex justify-between">
-        <h1 class="text-4xl text-gray-700 font-bold leading-none mb-8">Blog</h1>
+        <h1 class="text-4xl text-gray-700 font-bold leading-none mb-8">News</h1>
         <div>
           <Button
             className=""

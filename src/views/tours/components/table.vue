@@ -25,19 +25,19 @@
     <tbody class="border rounded bg-white">
       <tr v-for="(el, index) of data" :key="index">
         <td class="p-3 border" width="50px">
-          {{ el.listingCategory.name }}
+          {{ el.listingCategory && el.listingCategory.name }}
         </td>
         <td class="p-3 border" width="50px">
-          <code>{{ el.href }}</code>
+          <code>{{ el.href && el.href }}</code>
         </td>
         <td class="p-3 border">
-          {{ el.title }}
+          {{ el.title && el.title }}
         </td>
         <td class="p-3 border">
-          {{ el.featuredImage }}
+          {{ el.featuredImage && el.featuredImage }}
         </td>
         <td class="p-3 border">
-          {{ el.price }}
+          {{ el.price && el.price }}
         </td>
         <td class="p-3 border">
           <Modal

@@ -179,39 +179,7 @@
                       />
                     </div>
                   </div>
-                  <div class="mt-6">
-                    <label
-                      for="password"
-                      class="block text-sm font-medium leading-5 text-gray-700"
-                    >
-                      email
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                      <input
-                        id="password"
-                        type="text"
-                        required
-                        v-model="form.email"
-                        class="
-                          appearance-none
-                          block
-                          w-full
-                          px-3
-                          py-2
-                          border border-gray-300
-                          rounded-md
-                          placeholder-gray-400
-                          focus:outline-none
-                          focus:shadow-outline-blue
-                          focus:border-blue-300
-                          transition
-                          duration-150
-                          ease-in-out
-                          sm:text-sm sm:leading-5
-                        "
-                      />
-                    </div>
-                  </div>
+
                   <div class="mt-6">
                     <label
                       for="password"
@@ -252,6 +220,7 @@
                     >
                       avatar
                     </label>
+                    <Upload_avatar :data="form" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
@@ -275,6 +244,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
+                        disabled
                       />
                     </div>
                   </div>
@@ -285,6 +255,7 @@
                     >
                       bgImage
                     </label>
+                    <Upload_bgImage :data="form" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
@@ -308,6 +279,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
+                        disabled
                       />
                     </div>
                   </div>
@@ -510,6 +482,8 @@
 </template>
 
 <script >
+import Upload_bgImage from "../../../components/fileupload/one/bgImage.vue";
+import Upload_avatar from "../../../components/fileupload/one/avatar.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 export default defineComponent({
@@ -517,6 +491,10 @@ export default defineComponent({
   props: {
     modal: Object,
     data: Object,
+  },
+  components: {
+    Upload_bgImage,
+    Upload_avatar,
   },
   data() {
     return {
@@ -526,9 +504,8 @@ export default defineComponent({
         displayName: "Truelock Alric",
         email: "atruelock0@skype.com",
         gender: "Bigender",
-        avatar: "/static/media/Image-1.90baa8cc883db8970fda.png",
-        bgImage:
-          "https://images.pexels.com/photos/4064835/pexels-photo-4064835.jpeg?auto=compress&cs=tinysrgb&w=500",
+        avatar: "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+        bgImage: "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
         count: 40,
         href: "/author",
         desc: "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",
@@ -553,9 +530,9 @@ export default defineComponent({
             displayName: "Truelock Alric",
             email: "atruelock0@skype.com",
             gender: "Bigender",
-            avatar: "/static/media/Image-1.90baa8cc883db8970fda.png",
+            avatar: "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
             bgImage:
-              "https://images.pexels.com/photos/4064835/pexels-photo-4064835.jpeg?auto=compress&cs=tinysrgb&w=500",
+              "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
             count: 40,
             href: "/author",
             desc: "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",

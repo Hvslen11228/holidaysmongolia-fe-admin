@@ -55,6 +55,7 @@
                     >
                       featuredImage
                     </label>
+                    <Upload_featuredImage :data="form" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
@@ -78,6 +79,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
+                        disabled
                       />
                     </div>
                   </div>
@@ -247,6 +249,7 @@
 </template>
 
 <script >
+import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 export default defineComponent({
@@ -255,11 +258,14 @@ export default defineComponent({
     modal: Object,
     data: Object,
   },
+  components: {
+    Upload_featuredImage,
+  },
   data() {
     return {
       form: {
         featuredImage:
-          "https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+          "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
         title: "Lenovo’s smarter devices stoke professional passions ",
         desc: "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
         date: "May 20, 2021",
@@ -287,7 +293,7 @@ export default defineComponent({
           this.data.push(res.data.data);
           this.form = {
             featuredImage:
-              "https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+              "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
             title: "Lenovo’s smarter devices stoke professional passions ",
             desc: "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
             date: "May 20, 2021",

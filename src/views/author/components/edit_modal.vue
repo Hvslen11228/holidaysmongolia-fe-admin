@@ -11,7 +11,7 @@
         }
       "
     />
-    <!-- <Button
+    <Button
       className="ml-2 bg-red-500 hover:bg-red-400 "
       type="button"
       title="Устгах"
@@ -21,7 +21,7 @@
           delete_user(data._id, index);
         }
       "
-    /> -->
+    />
   </div>
   <div
     :class="` ${modal.show ? 'opacity-100 relative z-10' : 'opacity-0'}`"
@@ -209,39 +209,6 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
-                      email
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                      <input
-                        id="password"
-                        type="text"
-                        required
-                        v-model="data.email"
-                        class="
-                          appearance-none
-                          block
-                          w-full
-                          px-3
-                          py-2
-                          border border-gray-300
-                          rounded-md
-                          placeholder-gray-400
-                          focus:outline-none
-                          focus:shadow-outline-blue
-                          focus:border-blue-300
-                          transition
-                          duration-150
-                          ease-in-out
-                          sm:text-sm sm:leading-5
-                        "
-                      />
-                    </div>
-                  </div>
-                  <div class="mt-6">
-                    <label
-                      for="password"
-                      class="block text-sm font-medium leading-5 text-gray-700"
-                    >
                       gender
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
@@ -277,6 +244,7 @@
                     >
                       avatar
                     </label>
+                    <Upload_avatar :data="data" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
@@ -300,6 +268,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
+                        disabled
                       />
                     </div>
                   </div>
@@ -308,8 +277,8 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
-                      bgImage
                     </label>
+                    <Upload_bgImage :data="data" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
@@ -333,6 +302,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
+                        disabled
                       />
                     </div>
                   </div>
@@ -536,6 +506,8 @@
 </template>
 
 <script >
+import Upload_bgImage from "../../../components/fileupload/one/bgImage.vue";
+import Upload_avatar from "../../../components/fileupload/one/avatar.vue";
 import Button from "../../../components/button.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -546,7 +518,7 @@ export default defineComponent({
     delete_user: Function,
     index: Number,
   },
-  components: { Button },
+  components: { Button, Upload_avatar, Upload_bgImage },
   data() {
     return {
       modal: {
