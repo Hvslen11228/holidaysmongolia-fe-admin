@@ -206,6 +206,21 @@
                       />
                     </div>
                   </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      body
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <ckeditor
+                        :editor="editor"
+                        v-model="data.body"
+                        :config="editorConfig"
+                      ></ckeditor>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -275,6 +290,8 @@
 
 <script >
 import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Button from "../../../components/button.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -285,13 +302,16 @@ export default defineComponent({
     delete_user: Function,
     index: Number,
   },
-  components: { Button, Upload_featuredImage },
+  components: { Button, Upload_featuredImage, ckeditor: CKEditor.component },
   data() {
     return {
       modal: {
         show: false,
         value: "",
       },
+      editor: ClassicEditor,
+      editorData: "<p>Content of the editor.</p>",
+      editorConfig: {},
       onSubmit_value: false,
     };
   },

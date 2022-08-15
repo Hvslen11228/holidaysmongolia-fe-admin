@@ -830,7 +830,7 @@ export default defineComponent({
     async Fetch() {
       this.onSubmit_value = true;
       await axios
-        .post("tour", this.form)
+        .post("complex", this.form)
         .then(async (res) => {
           try {
             this.data.push(res.data.data);

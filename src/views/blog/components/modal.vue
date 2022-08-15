@@ -182,6 +182,21 @@
                       />
                     </div>
                   </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      body
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <ckeditor
+                        :editor="editor"
+                        v-model="form.body"
+                        :config="editorConfig"
+                      ></ckeditor>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -250,6 +265,8 @@
 
 <script >
 import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { defineComponent } from "vue";
 import axios from "axios";
 export default defineComponent({
@@ -260,6 +277,7 @@ export default defineComponent({
   },
   components: {
     Upload_featuredImage,
+    ckeditor: CKEditor.component,
   },
   data() {
     return {
@@ -268,6 +286,7 @@ export default defineComponent({
           "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
         title: "Lenovo’s smarter devices stoke professional passions ",
         desc: "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
+        body: "",
         date: "May 20, 2021",
         href: "/blog-single",
         commentCount: 11,
@@ -279,6 +298,9 @@ export default defineComponent({
         categoriesId: [3, 12],
         postType: "standard",
       },
+      editor: ClassicEditor,
+      editorData: "<p>Content of the editor.</p>",
+      editorConfig: {},
       onSubmit_value: false,
     };
   },
@@ -296,6 +318,7 @@ export default defineComponent({
               "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
             title: "Lenovo’s smarter devices stoke professional passions ",
             desc: "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
+            body: "",
             date: "May 20, 2021",
             href: "/blog-single",
             commentCount: 11,

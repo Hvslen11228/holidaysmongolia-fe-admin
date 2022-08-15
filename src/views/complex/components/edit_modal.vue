@@ -830,7 +830,7 @@ export default defineComponent({
     async Fetch() {
       this.onSubmit_value = true;
       await axios
-        .put("tour/" + this.data._id, this.data)
+        .put("complex/" + this.data._id, this.data)
         .then(async (res) => {
           this.onSubmit_value = false;
           this.modal.show = false;
