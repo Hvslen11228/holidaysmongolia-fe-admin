@@ -3,6 +3,9 @@
     <thead>
       <tr>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
+          lang
+        </th>
+        <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
           Id
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
@@ -24,6 +27,7 @@
     </thead>
     <tbody class="border rounded bg-white">
       <tr v-for="(el, index) of data" :key="index">
+        <td class="p-3 border">{{ el.lang && el.lang }}</td>
         <td class="p-3 border" width="50px">
           {{ el._id }}
         </td>

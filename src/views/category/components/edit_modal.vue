@@ -171,6 +171,39 @@
                       />
                     </div>
                   </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      Lang
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <select
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                        v-model="data.lang"
+                      >
+                        <option value="en">EN</option>
+                        <option value="any">ANY</option>
+                      </select>
+                    </div>
+                  </div>
                   <div class="mt-6 w-full">
                     <label
                       for="password"
@@ -299,13 +332,7 @@ export default defineComponent({
     async Fetch() {
       this.onSubmit_value = true;
       await axios
-        .put("category/" + this.data._id, {
-          href: this.data.href,
-          name: this.data.name,
-          taxonomy: this.data.taxonomy,
-          count: this.data.count,
-          thumbnail: this.data.thumbnail,
-        })
+        .put("category/" + this.data._id, this.data)
         .then(async (res) => {
           this.onSubmit_value = false;
           this.modal.show = false;
