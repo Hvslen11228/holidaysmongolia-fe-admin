@@ -1,4 +1,28 @@
 <template>
+  <div class="flex">
+    <Button
+      className=""
+      type="button"
+      title="Засах"
+      :loading="false"
+      @click="
+        (event) => {
+          modal.show = true;
+        }
+      "
+    />
+    <Button
+      className="ml-2 bg-red-500 hover:bg-red-400 "
+      type="button"
+      title="Устгах"
+      :loading="false"
+      @click="
+        (event) => {
+          delete_user(data._id, index);
+        }
+      "
+    />
+  </div>
   <div
     :class="` ${modal.show ? 'opacity-100 relative z-10' : 'opacity-0'}`"
     aria-labelledby="modal-title"
@@ -32,10 +56,9 @@
             text-left
             overflow-hidden
             shadow-xl
-            transform
+            transdata
             transition-all
-            sm:my-8 sm:max-w-5xl
-            w-full
+            sm:my-8 sm:max-w-5xl sm:w-full
           "
         >
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -45,8 +68,9 @@
                   class="text-lg leading-6 font-medium text-gray-900"
                   id="modal-title"
                 >
-                  Нэмэх
+                  Засах
                 </h3>
+
                 <div class="mt-2">
                   <div class="mt-6 w-full">
                     <label
@@ -74,8 +98,7 @@
                           ease-in-out
                         "
                         id=""
-                        v-model="form.listingCategoryId"
-                        required
+                        v-model="data.listingCategoryId"
                       >
                         <option
                           v-for="(el, index) of category"
@@ -92,39 +115,6 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
-                      pre_payment
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                      <input
-                        id="password"
-                        type="text"
-                        required
-                        v-model="form.pre_payment"
-                        class="
-                          appearance-none
-                          block
-                          w-full
-                          px-3
-                          py-2
-                          border border-gray-300
-                          rounded-md
-                          placeholder-gray-400
-                          focus:outline-none
-                          focus:shadow-outline-blue
-                          focus:border-blue-300
-                          transition
-                          duration-150
-                          ease-in-out
-                          sm:text-sm sm:leading-5
-                        "
-                      />
-                    </div>
-                  </div>
-                  <div class="mt-6 w-full">
-                    <label
-                      for="password"
-                      class="block text-sm font-medium leading-5 text-gray-700"
-                    >
                       href
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
@@ -132,7 +122,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.href"
+                        v-model="data.href"
                         class="
                           appearance-none
                           block
@@ -165,7 +155,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.date"
+                        v-model="data.date"
                         class="
                           appearance-none
                           block
@@ -198,7 +188,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.href"
+                        v-model="data.href"
                         class="
                           appearance-none
                           block
@@ -231,7 +221,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.title"
+                        v-model="data.title"
                         class="
                           appearance-none
                           block
@@ -259,13 +249,13 @@
                     >
                       featuredImage
                     </label>
-                    <Upload_featuredImage :data="form" />
+                    <Upload_featuredImage :data="data" />
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
                         type="text"
                         required
-                        v-model="form.featuredImage"
+                        v-model="data.featuredImage"
                         class="
                           appearance-none
                           block
@@ -299,7 +289,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.commentCount"
+                        v-model="data.commentCount"
                         class="
                           appearance-none
                           block
@@ -332,7 +322,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.viewCount"
+                        v-model="data.viewCount"
                         class="
                           appearance-none
                           block
@@ -365,7 +355,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.address"
+                        v-model="data.address"
                         class="
                           appearance-none
                           block
@@ -398,7 +388,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.reviewStart"
+                        v-model="data.reviewStart"
                         class="
                           appearance-none
                           block
@@ -431,7 +421,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.reviewCount"
+                        v-model="data.reviewCount"
                         class="
                           appearance-none
                           block
@@ -464,7 +454,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.price"
+                        v-model="data.price"
                         class="
                           appearance-none
                           block
@@ -497,7 +487,7 @@
                         id="password"
                         type="text"
                         required
-                        v-model="form.maxGuests"
+                        v-model="data.maxGuests"
                         class="
                           appearance-none
                           block
@@ -529,7 +519,7 @@
                       <input
                         id="password"
                         type="text"
-                        v-model="form.saleOff"
+                        v-model="data.saleOff"
                         class="
                           appearance-none
                           block
@@ -564,7 +554,7 @@
                           type="text"
                           placeholder="lat"
                           required
-                          v-model="form.map.lat"
+                          v-model="data.map.lat"
                           class="
                             appearance-none
                             block
@@ -590,7 +580,7 @@
                           type="text"
                           placeholder="lng"
                           required
-                          v-model="form.map.lng"
+                          v-model="data.map.lng"
                           class="
                             appearance-none
                             block
@@ -617,21 +607,6 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
-                      about
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                      <ckeditor
-                        :editor="editor"
-                        v-model="form.about"
-                        :config="editorConfig"
-                      ></ckeditor>
-                    </div>
-                  </div>
-                  <div class="mt-6">
-                    <label
-                      for="password"
-                      class="block text-sm font-medium leading-5 text-gray-700"
-                    >
                       amount_0
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
@@ -639,7 +614,7 @@
                         id="password"
                         type="number"
                         required
-                        v-model="form.amount_0"
+                        v-model="data.amount_0"
                         class="
                           appearance-none
                           block
@@ -672,7 +647,7 @@
                         id="password"
                         type="number"
                         required
-                        v-model="form.amount_1"
+                        v-model="data.amount_1"
                         class="
                           appearance-none
                           block
@@ -705,7 +680,7 @@
                         id="password"
                         type="number"
                         required
-                        v-model="form.amount_2"
+                        v-model="data.amount_2"
                         class="
                           appearance-none
                           block
@@ -724,6 +699,21 @@
                           sm:text-sm sm:leading-5
                         "
                       />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      about
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <ckeditor
+                        :editor="editor"
+                        v-model="data.about"
+                        :config="editorConfig"
+                      ></ckeditor>
                     </div>
                   </div>
                   <div class="mt-6">
@@ -752,7 +742,7 @@
                           ease-in-out
                           sm:text-sm sm:leading-5
                         "
-                        v-model="form.lang"
+                        v-model="data.lang"
                       >
                         <option value="en">EN</option>
                         <option value="any">ANY</option>
@@ -766,39 +756,13 @@
                     >
                       galleryImgs
                     </label>
-                    <Uploads_galleryImgs :data="form" />
-                  </div>
-                  <div class="mt-6">
-                    <label
-                      for="password"
-                      class="block text-sm font-medium leading-5 text-gray-700"
-                    >
-                      Icons
-                    </label>
-                    <div class="grid grid-cols-4 gap-4">
-                      <div
-                        v-for="(item, index) of icons"
-                        :key="index"
-                        class="flex items-center space-x-3"
-                      >
-                        <input
-                          type="checkbox"
-                          @click="
-                            () => {
-                              chnage(item);
-                            }
-                          "
-                          v-model="item.type"
-                        />
-                        <i :class="` text-3xl  las ${item.class}`"></i>
-                        <span> {{ item.class }}</span>
-                      </div>
-                    </div>
+                    <Uploads_galleryImgs :data="data" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <button
               type="button"
@@ -825,7 +789,7 @@
               @click="Fetch()"
             >
               <span v-if="onSubmit_value"> Түрлээнэ үү... </span>
-              <span v-else> Нэмэх </span>
+              <span v-else> Хадгалах </span>
             </button>
             <button
               type="button"
@@ -852,7 +816,7 @@
               "
               @click="modal.show = false"
             >
-              Цуцлах
+              Болих
             </button>
           </div>
         </div>
@@ -862,284 +826,53 @@
 </template>
 
 <script >
-import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
 import Uploads_galleryImgs from "../../../components/fileupload/not_one/galleryImgs.vue";
+import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Button from "../../../components/button.vue";
 import { defineComponent } from "vue";
-const icon_demo = [
-  {
-    id: 1,
-    class: "la-key",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 2,
-    class: "la-luggage-cart",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 3,
-    class: "la-shower",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 4,
-    class: "la-smoking",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 5,
-    class: "la-snowflake",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 6,
-    class: "la-spa",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 7,
-    class: "la-suitcase",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 8,
-    class: "la-suitcase-rolling",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 9,
-    class: "la-swimmer",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 10,
-    class: "la-swimming-pool",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 11,
-    class: "la-tv",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 12,
-    class: "la-umbrella-beach",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 13,
-    class: "la-utensils",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 14,
-    class: "la-wheelchair",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 15,
-    class: "la-wifi",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 16,
-    class: "la-baby-carriage",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 17,
-    class: "la-bath",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 18,
-    class: "la-bed",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 19,
-    class: "la-briefcase",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 20,
-    class: "la-car",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 21,
-    class: "la-cocktail",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 22,
-    class: "la-coffee",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 23,
-    class: "la-concierge-bell",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 24,
-    class: "la-dice",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 25,
-    class: "la-dumbbell",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 26,
-    class: "la-hot-tub",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-  {
-    id: 27,
-    class: "la-infinity",
-    name_1: null,
-    name_2: null,
-    type: false,
-  },
-];
 import axios from "axios";
 export default defineComponent({
   name: "table-components",
   props: {
-    modal: Object,
     data: Object,
+    delete_user: Function,
+    index: Number,
     category: Object,
   },
   components: {
+    Button,
     Upload_featuredImage,
     Uploads_galleryImgs,
     ckeditor: CKEditor.component,
   },
   data() {
     return {
-      form: {
-        authorId: this.$store.getters.user._id,
-        pre_payment: 0,
-        date: "May 20, 2021",
-        href: "/listing-detail",
-        listingCategoryId: "62f498084813210f1dba09c3",
-        title: "generate interactive markets",
-        featuredImage:
-          "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
-        galleryImgs: [
-          "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
-        ],
-        commentCount: 64,
-        viewCount: 369,
-        like: true,
-        address: "2 Warner Alley",
-        reviewStart: 4.4,
-        reviewCount: 478,
-        price: "$200",
-        maxGuests: 6,
-        saleOff: "-20% today",
-        isAds: true,
-        map: {
-          lat: 55.2094559,
-          lng: 61.5594641,
-        },
-        amount_0: 0,
-        amount_1: 0,
-        amount_2: 0,
-        about:
-          'Why do people travel to Mongolia from such far-flung countries? 60% of our clients replied with one voice: "beautiful scenery". Our country is one of the biggest in the world, from East to West 1500 miles and 80% of this is untouched by humans. So travelers dream of discovering a new wildland and fascinating nature.\n\nIf you want to explore exotic and untouched places, one of the best ways is our “Beauty of Mongolia Tour”. This trip allows you to visit a wide assortment of beautiful and wonderful places in Mongolia, including sand dunes in the Gobi Desert, vast steppe & mountains, freshwater lakes and rivers, ancient monasteries, and temples.',
-        icons: [],
+      modal: {
+        show: false,
+        value: "",
       },
       editor: ClassicEditor,
       editorData: "<p>Content of the editor.</p>",
       editorConfig: {},
       onSubmit_value: false,
-      loading: true,
-      icons: icon_demo,
     };
   },
   methods: {
     async Fetch() {
       this.onSubmit_value = true;
       await axios
-        .post("tour", this.form)
+        .put("complex/" + this.data._id, this.data)
         .then(async (res) => {
-          try {
-            this.data.push(res.data.data);
-          } catch (error) {}
           this.onSubmit_value = false;
           this.modal.show = false;
+          alert(res.data.message);
         })
         .catch((err) => {
           this.onSubmit_value = false;
           alert(err.data.message);
         });
-    },
-    async chnage(item) {
-      if (!item.type) {
-        this.form.icons.push(item.id);
-      } else {
-        const index = this.form.icons.indexOf(item.id);
-        if (index !== -1) {
-          this.form.icons.splice(index, 1);
-        }
-      }
     },
   },
 });

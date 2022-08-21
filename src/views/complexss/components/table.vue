@@ -3,64 +3,55 @@
     <thead>
       <tr>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          _id
+          Lang
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          user_id
+          listingCategory name
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          amount
+          href
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          date
+          title
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          travelers
+          featuredImage
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          income_amount
+          price
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          pay_type
-        </th>
-        <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          user
-        </th>
-        <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          tour
+          tools
         </th>
       </tr>
     </thead>
     <tbody class="border rounded bg-white">
       <tr v-for="(el, index) of data" :key="index">
         <td class="p-3 border" width="50px">
-          {{ el._id }}
+          {{ el.lang && el.lang }}
         </td>
         <td class="p-3 border" width="50px">
-          {{ el.user_id && el.user_id }}
+          {{ el.listingCategory && el.listingCategory.name }}
         </td>
         <td class="p-3 border" width="50px">
-          <code>{{ el.amount }} $</code>
-        </td>
-        <td class="p-3 border" width="50px">
-          <code>{{ el.date }}</code>
+          <code>{{ el.href && el.href }}</code>
         </td>
         <td class="p-3 border">
-          <p>Насанд хүрсэн : {{ el.travelers[0] }}</p>
-          <p>Өсвөр нас : {{ el.travelers[1] }}</p>
-          <p>Хүүхэд : {{ el.travelers[2] }}</p>
-        </td>
-        <td class="p-3 border">{{ el.income_amount }} $</td>
-        <td class="p-3 border">
-          {{ el.pay_type }}
+          {{ el.title && el.title }}
         </td>
         <td class="p-3 border">
-          {{ el.user.user_email }}
+          {{ el.featuredImage && el.featuredImage }}
         </td>
         <td class="p-3 border">
-          {{ el.tour._id }}
-          <br />
-          <span class="bg-green-300"> {{ el.tour.title }}</span>
+          {{ el.price && el.price }}
+        </td>
+        <td class="p-3 border">
+          <Modal
+            :data="el"
+            :delete_user="delete_user"
+            :index="index"
+            :category="category"
+          />
         </td>
       </tr>
     </tbody>
@@ -69,10 +60,10 @@
 
 <script >
 import { defineComponent } from "vue";
-
+import Modal from "./edit_modal.vue";
 export default defineComponent({
   name: "table-components",
-  components: {},
+  components: { Modal },
   props: {
     data: Object,
     keyword: {

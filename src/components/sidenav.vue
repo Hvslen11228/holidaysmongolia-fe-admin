@@ -25,9 +25,35 @@
     </button>
 
     <!-- nav -->
-    <div class="pt-4 pr-4">
+    <div v-if="this.$store.getters.user.type == 'admin'" class="pt-4 pr-4">
       <router-link
         v-for="(el, index) in links"
+        class="
+          flex
+          items-center
+          tracking-wide
+          font-normal
+          text-sm
+          h-12
+          text-gray-700
+          hover:text-black
+        "
+        :key="index"
+        :to="el.href"
+      >
+        <img
+          v-if="el.icon"
+          :src="el.icon"
+          class="w-5 h-5 fill-current mx-3"
+          alt=""
+        />
+        <div v-else class="w-5 h-5 fill-current mx-3"></div>
+        {{ el.name }}</router-link
+      >
+    </div>
+    <div v-else class="pt-4 pr-4">
+      <router-link
+        v-for="(el, index) in links2"
         class="
           flex
           items-center
@@ -100,6 +126,23 @@ export default defineComponent({
         {
           href: "/news",
           name: "news",
+          icon: "",
+        },
+        {
+          href: "./documentation",
+          name: "Documentation",
+          icon: "",
+        },
+      ],
+      links2: [
+        {
+          href: "../",
+          name: "Dashboard",
+          icon: "",
+        },
+        {
+          href: "/tour",
+          name: "tour",
           icon: "",
         },
         {

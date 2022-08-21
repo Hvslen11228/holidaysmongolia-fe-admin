@@ -768,6 +768,33 @@
                     </label>
                     <Uploads_galleryImgs :data="form" />
                   </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      Icons
+                    </label>
+                    <div class="grid grid-cols-4 gap-4">
+                      <div
+                        v-for="(item, index) of icons"
+                        :key="index"
+                        class="flex items-center space-x-3"
+                      >
+                        <input
+                          type="checkbox"
+                          @click="
+                            () => {
+                              chnage(item);
+                            }
+                          "
+                          v-model="item.type"
+                        />
+                        <i :class="` text-3xl  las ${item.class}`"></i>
+                        <span> {{ item.class }}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -840,6 +867,197 @@ import Uploads_galleryImgs from "../../../components/fileupload/not_one/galleryI
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { defineComponent } from "vue";
+const icon_demo = [
+  {
+    id: 1,
+    class: "la-key",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 2,
+    class: "la-luggage-cart",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 3,
+    class: "la-shower",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 4,
+    class: "la-smoking",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 5,
+    class: "la-snowflake",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 6,
+    class: "la-spa",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 7,
+    class: "la-suitcase",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 8,
+    class: "la-suitcase-rolling",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 9,
+    class: "la-swimmer",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 10,
+    class: "la-swimming-pool",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 11,
+    class: "la-tv",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 12,
+    class: "la-umbrella-beach",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 13,
+    class: "la-utensils",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 14,
+    class: "la-wheelchair",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 15,
+    class: "la-wifi",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 16,
+    class: "la-baby-carriage",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 17,
+    class: "la-bath",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 18,
+    class: "la-bed",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 19,
+    class: "la-briefcase",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 20,
+    class: "la-car",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 21,
+    class: "la-cocktail",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 22,
+    class: "la-coffee",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 23,
+    class: "la-concierge-bell",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 24,
+    class: "la-dice",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 25,
+    class: "la-dumbbell",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 26,
+    class: "la-hot-tub",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 27,
+    class: "la-infinity",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+];
 import axios from "axios";
 export default defineComponent({
   name: "table-components",
@@ -886,12 +1104,14 @@ export default defineComponent({
         amount_2: 0,
         about:
           'Why do people travel to Mongolia from such far-flung countries? 60% of our clients replied with one voice: "beautiful scenery". Our country is one of the biggest in the world, from East to West 1500 miles and 80% of this is untouched by humans. So travelers dream of discovering a new wildland and fascinating nature.\n\nIf you want to explore exotic and untouched places, one of the best ways is our “Beauty of Mongolia Tour”. This trip allows you to visit a wide assortment of beautiful and wonderful places in Mongolia, including sand dunes in the Gobi Desert, vast steppe & mountains, freshwater lakes and rivers, ancient monasteries, and temples.',
+        icons: [],
       },
       editor: ClassicEditor,
       editorData: "<p>Content of the editor.</p>",
       editorConfig: {},
       onSubmit_value: false,
       loading: true,
+      icons: icon_demo,
     };
   },
   methods: {
@@ -910,6 +1130,16 @@ export default defineComponent({
           this.onSubmit_value = false;
           alert(err.data.message);
         });
+    },
+    async chnage(item) {
+      if (!item.type) {
+        this.form.icons.push(item.id);
+      } else {
+        const index = this.form.icons.indexOf(item.id);
+        if (index !== -1) {
+          this.form.icons.splice(index, 1);
+        }
+      }
     },
   },
 });

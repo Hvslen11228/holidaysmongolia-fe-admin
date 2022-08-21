@@ -71,7 +71,7 @@
                   Засах
                 </h3>
 
-                <div class="mt-2">
+                <div v-if="!loading" class="mt-2">
                   <div class="mt-6 w-full">
                     <label
                       for="password"
@@ -758,7 +758,35 @@
                     </label>
                     <Uploads_galleryImgs :data="data" />
                   </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      Icons
+                    </label>
+                    <div class="grid grid-cols-4 gap-4">
+                      <div
+                        v-for="(item, index) of icons"
+                        :key="index"
+                        class="flex items-center space-x-3"
+                      >
+                        <input
+                          type="checkbox"
+                          @click="
+                            () => {
+                              chnage(item);
+                            }
+                          "
+                          v-model="item.type"
+                        />
+                        <i :class="` text-3xl  las ${item.class}`"></i>
+                        <span> {{ item.class }}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div v-else>loading</div>
               </div>
             </div>
           </div>
@@ -833,6 +861,198 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Button from "../../../components/button.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
+import { findDir } from "@vue/compiler-core";
+const icon_demo = [
+  {
+    id: 1,
+    class: "la-key",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 2,
+    class: "la-luggage-cart",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 3,
+    class: "la-shower",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 4,
+    class: "la-smoking",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 5,
+    class: "la-snowflake",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 6,
+    class: "la-spa",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 7,
+    class: "la-suitcase",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 8,
+    class: "la-suitcase-rolling",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 9,
+    class: "la-swimmer",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 10,
+    class: "la-swimming-pool",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 11,
+    class: "la-tv",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 12,
+    class: "la-umbrella-beach",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 13,
+    class: "la-utensils",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 14,
+    class: "la-wheelchair",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 15,
+    class: "la-wifi",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 16,
+    class: "la-baby-carriage",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 17,
+    class: "la-bath",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 18,
+    class: "la-bed",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 19,
+    class: "la-briefcase",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 20,
+    class: "la-car",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 21,
+    class: "la-cocktail",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 22,
+    class: "la-coffee",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 23,
+    class: "la-concierge-bell",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 24,
+    class: "la-dice",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 25,
+    class: "la-dumbbell",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 26,
+    class: "la-hot-tub",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+  {
+    id: 27,
+    class: "la-infinity",
+    name_1: null,
+    name_2: null,
+    type: false,
+  },
+];
 export default defineComponent({
   name: "table-components",
   props: {
@@ -857,6 +1077,8 @@ export default defineComponent({
       editorData: "<p>Content of the editor.</p>",
       editorConfig: {},
       onSubmit_value: false,
+      icons: icon_demo,
+      loading: true,
     };
   },
   methods: {
@@ -874,6 +1096,25 @@ export default defineComponent({
           alert(err.data.message);
         });
     },
+    async chnage(item) {
+      if (!item.type) {
+        this.data.icons.push(item.id);
+      } else {
+        const index = this.data.icons.indexOf(item.id);
+        if (index !== -1) {
+          this.data.icons.splice(index, 1);
+        }
+      }
+    },
+  },
+  mounted: async function () {
+    for (let index = 0; index < this.icons.length; index++) {
+      const el = this.icons[index];
+      if (this.data.icons.includes(el.id)) {
+        this.icons[index].type = true;
+      }
+    }
+    this.loading = false;
   },
 });
 </script>
