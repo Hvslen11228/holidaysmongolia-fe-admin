@@ -13,7 +13,7 @@
     <div class="p-8 text-sm text-gray-800">
       <div class="flex justify-between">
         <h1 class="text-4xl text-gray-700 font-bold leading-none mb-8">
-          Tours
+          complex
         </h1>
         <div>
           <Button
@@ -131,7 +131,7 @@ export default defineComponent({
   methods: {
     async delete_user(id, index) {
       this.data.splice(index, 1);
-      await axios.delete("tour/" + id);
+      await axios.delete("complex/" + id);
     },
   },
   created: async function () {

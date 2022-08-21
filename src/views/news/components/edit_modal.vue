@@ -77,6 +77,40 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
+                      type
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <select
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                        "
+                        id=""
+                        v-model="data.lang"
+                        required
+                      >
+                        <option value="en">en</option>
+                        <option value="any">any</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mt-6 w-full">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
                       featuredImage
                     </label>
                     <Upload_featuredImage :data="data" />
@@ -206,6 +240,21 @@
                       />
                     </div>
                   </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      body
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <ckeditor
+                        :editor="editor"
+                        v-model="data.body"
+                        :config="editorConfig"
+                      ></ckeditor>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -275,6 +324,8 @@
 
 <script >
 import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Button from "../../../components/button.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -285,13 +336,16 @@ export default defineComponent({
     delete_user: Function,
     index: Number,
   },
-  components: { Button, Upload_featuredImage },
+  components: { Button, Upload_featuredImage, ckeditor: CKEditor.component },
   data() {
     return {
       modal: {
         show: false,
         value: "",
       },
+      editor: ClassicEditor,
+      editorData: "<p>Content of the editor.</p>",
+      editorConfig: {},
       onSubmit_value: false,
     };
   },

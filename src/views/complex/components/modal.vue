@@ -75,6 +75,7 @@
                         "
                         id=""
                         v-model="form.listingCategoryId"
+                        required
                       >
                         <option
                           v-for="(el, index) of category"
@@ -84,6 +85,39 @@
                           {{ el.name }}
                         </option>
                       </select>
+                    </div>
+                  </div>
+                  <div class="mt-6 w-full">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      pre_payment
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="form.pre_payment"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
                     </div>
                   </div>
                   <div class="mt-6 w-full">
@@ -697,6 +731,39 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
+                      Lang
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <select
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                        v-model="form.lang"
+                      >
+                        <option value="en">EN</option>
+                        <option value="any">ANY</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
                       galleryImgs
                     </label>
                     <Uploads_galleryImgs :data="form" />
@@ -790,14 +857,15 @@ export default defineComponent({
     return {
       form: {
         authorId: this.$store.getters.user._id,
+        pre_payment: 0,
         date: "May 20, 2021",
         href: "/listing-detail",
         listingCategoryId: "62f498084813210f1dba09c3",
         title: "generate interactive markets",
         featuredImage:
-          "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+          "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
         galleryImgs: [
-          "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+          "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
         ],
         commentCount: 64,
         viewCount: 369,

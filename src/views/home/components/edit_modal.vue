@@ -56,9 +56,9 @@
             text-left
             overflow-hidden
             shadow-xl
-            transform
+            transdata
             transition-all
-            sm:my-8 sm:max-w-lg sm:w-full
+            sm:my-8 sm:max-w-5xl sm:w-full
           "
         >
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -72,6 +72,44 @@
                 </h3>
 
                 <div class="mt-2">
+                  <div class="mt-6 w-full">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      listingCategoryId
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <select
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                        "
+                        id=""
+                        v-model="data.listingCategoryId"
+                      >
+                        <option
+                          v-for="(el, index) of category"
+                          :key="index"
+                          :value="el._id"
+                        >
+                          {{ el.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
                   <div class="mt-6 w-full">
                     <label
                       for="password"
@@ -110,14 +148,14 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
-                      name
+                      date
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
                         type="text"
                         required
-                        v-model="data.name"
+                        v-model="data.date"
                         class="
                           appearance-none
                           block
@@ -138,19 +176,19 @@
                       />
                     </div>
                   </div>
-                  <div class="mt-6 w-full">
+                  <div class="mt-6">
                     <label
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
-                      count
+                      href
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
                         type="text"
                         required
-                        v-model="data.count"
+                        v-model="data.href"
                         class="
                           appearance-none
                           block
@@ -171,19 +209,19 @@
                       />
                     </div>
                   </div>
-                  <div class="mt-6 w-full">
+                  <div class="mt-6">
                     <label
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
-                      thumbnail
+                      title
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
                       <input
                         id="password"
                         type="text"
                         required
-                        v-model="data.thumbnail"
+                        v-model="data.title"
                         class="
                           appearance-none
                           block
@@ -203,6 +241,522 @@
                         "
                       />
                     </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      featuredImage
+                    </label>
+                    <Upload_featuredImage :data="data" />
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.featuredImage"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      commentCount
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.commentCount"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      viewCount
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.viewCount"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      address
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.address"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      reviewStart
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.reviewStart"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      reviewCount
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.reviewCount"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      price
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.price"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      maxGuests
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        required
+                        v-model="data.maxGuests"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      saleOff
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="text"
+                        v-model="data.saleOff"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      map
+                    </label>
+                    <div class="flex">
+                      <div class="mt-1 rounded-md shadow-sm w-full mr-2">
+                        <input
+                          id="password"
+                          type="text"
+                          placeholder="lat"
+                          required
+                          v-model="data.map.lat"
+                          class="
+                            appearance-none
+                            block
+                            w-full
+                            px-3
+                            py-2
+                            border border-gray-300
+                            rounded-md
+                            placeholder-gray-400
+                            focus:outline-none
+                            focus:shadow-outline-blue
+                            focus:border-blue-300
+                            transition
+                            duration-150
+                            ease-in-out
+                            sm:text-sm sm:leading-5
+                          "
+                        />
+                      </div>
+                      <div class="mt-1 rounded-md shadow-sm w-full ml-2">
+                        <input
+                          id="password"
+                          type="text"
+                          placeholder="lng"
+                          required
+                          v-model="data.map.lng"
+                          class="
+                            appearance-none
+                            block
+                            w-full
+                            px-3
+                            py-2
+                            border border-gray-300
+                            rounded-md
+                            placeholder-gray-400
+                            focus:outline-none
+                            focus:shadow-outline-blue
+                            focus:border-blue-300
+                            transition
+                            duration-150
+                            ease-in-out
+                            sm:text-sm sm:leading-5
+                          "
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      amount_0
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="number"
+                        required
+                        v-model="data.amount_0"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      amount_1
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="number"
+                        required
+                        v-model="data.amount_1"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      amount_2
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <input
+                        id="password"
+                        type="number"
+                        required
+                        v-model="data.amount_2"
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      about
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <ckeditor
+                        :editor="editor"
+                        v-model="data.about"
+                        :config="editorConfig"
+                      ></ckeditor>
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      Lang
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <select
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                          sm:text-sm sm:leading-5
+                        "
+                        v-model="data.lang"
+                      >
+                        <option value="en">EN</option>
+                        <option value="any">ANY</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
+                      galleryImgs
+                    </label>
+                    <Uploads_galleryImgs :data="data" />
                   </div>
                 </div>
               </div>
@@ -272,6 +826,10 @@
 </template>
 
 <script >
+import Uploads_galleryImgs from "../../../components/fileupload/not_one/galleryImgs.vue";
+import Upload_featuredImage from "../../../components/fileupload/one/featuredImage.vue";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Button from "../../../components/button.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -281,14 +839,23 @@ export default defineComponent({
     data: Object,
     delete_user: Function,
     index: Number,
+    category: Object,
   },
-  components: { Button },
+  components: {
+    Button,
+    Upload_featuredImage,
+    Uploads_galleryImgs,
+    ckeditor: CKEditor.component,
+  },
   data() {
     return {
       modal: {
         show: false,
         value: "",
       },
+      editor: ClassicEditor,
+      editorData: "<p>Content of the editor.</p>",
+      editorConfig: {},
       onSubmit_value: false,
     };
   },
@@ -296,13 +863,7 @@ export default defineComponent({
     async Fetch() {
       this.onSubmit_value = true;
       await axios
-        .put("category/" + this.data._id, {
-          href: this.data.href,
-          name: this.data.name,
-          taxonomy: this.data.taxonomy,
-          count: this.data.count,
-          thumbnail: this.data.thumbnail,
-        })
+        .put("complex/" + this.data._id, this.data)
         .then(async (res) => {
           this.onSubmit_value = false;
           this.modal.show = false;

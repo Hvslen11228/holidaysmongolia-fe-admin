@@ -46,6 +46,40 @@
                 >
                   Нэмэх
                 </h3>
+                <div class="mt-6 w-full">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium leading-5 text-gray-700"
+                  >
+                    type
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <select
+                      class="
+                        appearance-none
+                        block
+                        w-full
+                        px-3
+                        py-2
+                        border border-gray-300
+                        rounded-md
+                        placeholder-gray-400
+                        focus:outline-none
+                        focus:shadow-outline-blue
+                        focus:border-blue-300
+                        transition
+                        duration-150
+                        ease-in-out
+                      "
+                      id=""
+                      v-model="form.type"
+                      required
+                    >
+                      <option selected value="mod">Mod</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="mt-2">
                   <div class="mt-6 w-full">
                     <label
@@ -499,18 +533,19 @@ export default defineComponent({
   data() {
     return {
       form: {
-        firstName: "Alric",
-        lastName: "Truelock",
-        displayName: "Truelock Alric",
-        email: "atruelock0@skype.com",
-        gender: "Bigender",
-        avatar: "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
-        bgImage: "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+        firstName: "",
+        lastName: "",
+        displayName: "",
+        email: "",
+        gender: "men",
+        avatar: "/uploads/holidays/image/png/6301c3be16519840a7da4d2f.png",
+        bgImage: "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
         count: 40,
         href: "/author",
-        desc: "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",
-        jobName: "Author Job",
+        desc: "",
+        jobName: "",
         password: "1",
+        type: "mod",
       },
       onSubmit_value: false,
     };
@@ -530,9 +565,9 @@ export default defineComponent({
             displayName: "Truelock Alric",
             email: "atruelock0@skype.com",
             gender: "Bigender",
-            avatar: "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+            avatar: "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
             bgImage:
-              "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+              "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
             count: 40,
             href: "/author",
             desc: "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",

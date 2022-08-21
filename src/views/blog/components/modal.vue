@@ -53,6 +53,40 @@
                       for="password"
                       class="block text-sm font-medium leading-5 text-gray-700"
                     >
+                      type
+                    </label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                      <select
+                        class="
+                          appearance-none
+                          block
+                          w-full
+                          px-3
+                          py-2
+                          border border-gray-300
+                          rounded-md
+                          placeholder-gray-400
+                          focus:outline-none
+                          focus:shadow-outline-blue
+                          focus:border-blue-300
+                          transition
+                          duration-150
+                          ease-in-out
+                        "
+                        id=""
+                        v-model="form.lang"
+                        required
+                      >
+                        <option selected value="en">en</option>
+                        <option value="any">any</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mt-6 w-full">
+                    <label
+                      for="password"
+                      class="block text-sm font-medium leading-5 text-gray-700"
+                    >
                       featuredImage
                     </label>
                     <Upload_featuredImage :data="form" />
@@ -283,7 +317,7 @@ export default defineComponent({
     return {
       form: {
         featuredImage:
-          "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+          "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
         title: "Lenovo’s smarter devices stoke professional passions ",
         desc: "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
         body: "",
@@ -297,6 +331,7 @@ export default defineComponent({
         authorId: "62f7cfcb63d700b961422344",
         categoriesId: [3, 12],
         postType: "standard",
+        lang: "en",
       },
       editor: ClassicEditor,
       editorData: "<p>Content of the editor.</p>",
@@ -315,7 +350,7 @@ export default defineComponent({
           this.data.push(res.data.data);
           this.form = {
             featuredImage:
-              "/uploads/holidays/image/jpeg/62f9bd396e9f2bfb9d27a30d.jpg",
+              "/uploads/holidays/image/jpeg/6301c3c7a025846fe4e8c114.jpg",
             title: "Lenovo’s smarter devices stoke professional passions ",
             desc: "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
             body: "",
@@ -329,6 +364,7 @@ export default defineComponent({
             authorId: "62f7cfcb63d700b961422344",
             categoriesId: [3, 12],
             postType: "standard",
+            lang: "en",
           };
         })
         .catch((err) => {

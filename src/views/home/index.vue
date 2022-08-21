@@ -13,24 +13,10 @@
     <div class="p-8 text-sm text-gray-800">
       <div class="flex justify-between">
         <h1 class="text-4xl text-gray-700 font-bold leading-none mb-8">
-          Category
+          Orders
         </h1>
-        <div>
-          <Button
-            className=""
-            type="button"
-            title="Нэмэх"
-            :loading="false"
-            @click="
-              (event) => {
-                modal.show = true;
-              }
-            "
-          />
-        </div>
+        <div></div>
       </div>
-
-      <Modal :modal="modal" :data="data" />
       <input
         v-model="keyword"
         class="
@@ -56,6 +42,7 @@
         :data="filterData"
         :keyword="keyword"
         :delete_user="delete_user"
+        :category="category"
       />
       <div
         v-else
@@ -102,17 +89,17 @@
 <script >
 import Button from "../../components/button.vue";
 import Table from "./components/table.vue";
-import Modal from "./components/modal.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 export default defineComponent({
   name: "HomeView",
-  components: { Button, Table, Modal },
+  components: { Button, Table },
   data() {
     return {
       data: null,
       keyword: "",
       loading: true,
+      category: null,
       modal: {
         show: false,
         value: "",
@@ -122,15 +109,15 @@ export default defineComponent({
   computed: {
     filterData() {
       const { data, keyword } = this;
-      return data.filter(({ name }) =>
-        name.toLowerCase().includes(keyword.toLowerCase())
+      return data.filter(({ tour }) =>
+        tour?.title.toLowerCase().includes(keyword.toLowerCase())
       );
     },
   },
   methods: {
     async delete_user(id, index) {
       this.data.splice(index, 1);
-      await axios.delete("category/" + id);
+      await axios.delete("complex/" + id);
     },
   },
   created: async function () {
@@ -142,7 +129,7 @@ export default defineComponent({
   },
   mounted: async function () {
     this.$store.dispatch("pathname", location.hash);
-    const result = await axios.get("category");
+    const result = await axios.get("order");
     this.data = result.data.data;
     this.loading = false;
   },

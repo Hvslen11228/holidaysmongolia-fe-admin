@@ -3,22 +3,28 @@
     <thead>
       <tr>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          Id
+          _id
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          href
+          user_id
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          name
+          amount
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          count
+          travelers
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          thumbnail
+          income_amount
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          tools
+          pay_type
+        </th>
+        <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
+          user
+        </th>
+        <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
+          tour
         </th>
       </tr>
     </thead>
@@ -28,19 +34,27 @@
           {{ el._id }}
         </td>
         <td class="p-3 border" width="50px">
-          <code>{{ el.href }}</code>
+          {{ el.user_id && el.user_id }}
+        </td>
+        <td class="p-3 border" width="50px">
+          <code>{{ el.amount }} $</code>
         </td>
         <td class="p-3 border">
-          {{ el.name }}
+          <p>Насанд хүрсэн : {{ el.travelers[0] }}</p>
+          <p>Өсвөр нас : {{ el.travelers[1] }}</p>
+          <p>Хүүхэд : {{ el.travelers[2] }}</p>
+        </td>
+        <td class="p-3 border">{{ el.income_amount }} $</td>
+        <td class="p-3 border">
+          {{ el.pay_type }}
         </td>
         <td class="p-3 border">
-          {{ el.count }}
+          {{ el.user.user_email }}
         </td>
         <td class="p-3 border">
-          {{ el.thumbnail }}
-        </td>
-        <td class="p-3 border">
-          <Modal :data="el" :delete_user="delete_user" :index="index" />
+          {{ el.tour._id }}
+          <br />
+          <span class="bg-green-300"> {{ el.tour.title }}</span>
         </td>
       </tr>
     </tbody>
@@ -49,10 +63,10 @@
 
 <script >
 import { defineComponent } from "vue";
-import Modal from "./edit_modal.vue";
+
 export default defineComponent({
   name: "table-components",
-  components: { Modal },
+  components: {},
   props: {
     data: Object,
     keyword: {
@@ -60,6 +74,7 @@ export default defineComponent({
       required: true,
     },
     delete_user: Function,
+    category: Object,
   },
   methods: {},
 });
