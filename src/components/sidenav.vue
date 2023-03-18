@@ -5,17 +5,7 @@
   >
     <!-- logo -->
     <button
-      class="
-        w-full
-        h-16
-        border-b
-        flex
-        items-center
-        justify-center
-        text-xl
-        font-bold
-        text-gray-800
-      "
+      class="w-full h-16 border-b flex items-center justify-center text-xl font-bold text-gray-800"
     >
       <img
         src="https://img.icons8.com/bubbles/50/000000/admin-settings-male.png"
@@ -28,16 +18,7 @@
     <div v-if="this.$store.getters.user.type == 'admin'" class="pt-4 pr-4">
       <router-link
         v-for="(el, index) in links"
-        class="
-          flex
-          items-center
-          tracking-wide
-          font-normal
-          text-sm
-          h-12
-          text-gray-700
-          hover:text-black
-        "
+        class="flex items-center tracking-wide font-normal text-sm h-12 text-gray-700 hover:text-black"
         :key="index"
         :to="el.href"
       >
@@ -54,16 +35,7 @@
     <div v-else class="pt-4 pr-4">
       <router-link
         v-for="(el, index) in links2"
-        class="
-          flex
-          items-center
-          tracking-wide
-          font-normal
-          text-sm
-          h-12
-          text-gray-700
-          hover:text-black
-        "
+        class="flex items-center tracking-wide font-normal text-sm h-12 text-gray-700 hover:text-black"
         :key="index"
         :to="el.href"
       >
@@ -92,7 +64,11 @@ export default defineComponent({
           name: "Dashboard",
           icon: "",
         },
-
+        {
+          href: "../xanadu",
+          name: "Xandau",
+          icon: "",
+        },
         {
           href: "/category",
           name: "category",

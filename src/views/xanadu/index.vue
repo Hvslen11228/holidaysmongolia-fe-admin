@@ -74,8 +74,8 @@ export default defineComponent({
   computed: {
     filterData() {
       const { data, keyword } = this;
-      return data.filter(({ tour }) =>
-        tour?.title.toLowerCase().includes(keyword.toLowerCase())
+      return data.filter(({ user }) =>
+        user[0].user_email.toLowerCase().includes(keyword.toLowerCase())
       );
     },
   },
@@ -94,7 +94,7 @@ export default defineComponent({
   },
   mounted: async function () {
     this.$store.dispatch("pathname", location.hash);
-    const result = await axios.get("order");
+    const result = await axios.get("order/xanadu/alldata");
     this.data = result.data.data;
     this.loading = false;
   },

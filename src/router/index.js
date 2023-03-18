@@ -11,12 +11,17 @@ import complex from "../views/complex/index.vue";
 import blog from "../views/blog/index.vue";
 import news from "../views/news/index.vue";
 import media from "../views/media/index.vue";
-
+import xanaduView from "../views/xanadu/index.vue";
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/xanadu",
+    name: "xanadu",
+    component: xanaduView,
   },
   {
     path: "/login",
