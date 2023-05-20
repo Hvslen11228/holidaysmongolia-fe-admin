@@ -35,6 +35,7 @@
             " " +
             el.user[0].user_email
           }}
+          {{ el?.user_email + " " + el?.user_name }}
         </td>
         <td class="p-3 border" width="50px">
           <code>{{ el.amount }} $</code>
@@ -43,9 +44,9 @@
           <code>{{ el.updatedAt }}</code>
         </td>
         <td class="p-3 border">
-          <p>RV : {{ el?.accommodations?.rv || 0 }}</p>
-          <p>YURT : {{ el?.accommodations?.yurt || 0 }}</p>
-          <p>TENT : {{ el?.accommodations?.tent || 0 }}</p>
+          <p>RV : {{ el?.accommodations[0]?.rv || 0 }}</p>
+          <p>YURT : {{ el?.accommodations[0]?.yurt || 0 }}</p>
+          <p>TENT : {{ el?.accommodations[0]?.tent || 0 }}</p>
         </td>
         <td class="p-3 border">
           {{ el.pay_type }}
