@@ -3,51 +3,55 @@
     <thead>
       <tr>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          _id
+          Lang
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          user_id
+          listingCategory name
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          amount
+          href
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          date
+          title
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          accommodations
+          featuredImage
         </th>
         <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-          pay_type
+          price
+        </th>
+        <th class="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
+          tools
         </th>
       </tr>
     </thead>
     <tbody class="border rounded bg-white">
       <tr v-for="(el, index) of data" :key="index">
         <td class="p-3 border" width="50px">
-          {{ el._id }}
-        </td>
-<td class="p-3 border" width="50px">
-  <template v-if="el.user && el.user.length > 0">
-    {{ el.user[0].first_name + " " + el.user[0].last_name + " " + el.user[0].user_email }}
-  </template>
-  <template v-else>
-    {{ el.user_email + " " + el.user_name }}
-  </template>
-</td>
-        <td class="p-3 border" width="50px">
-          <code>{{ el.amount }} $</code>
+          {{ el.lang && el.lang }}
         </td>
         <td class="p-3 border" width="50px">
-          <code>{{ el.updatedAt }}</code>
+          {{ el.listingCategory && el.listingCategory.name }}
+        </td>
+        <td class="p-3 border" width="50px">
+          <code>{{ el.href && el.href }}</code>
         </td>
         <td class="p-3 border">
-          <p>RV : {{ el?.accommodations[0]?.rv || 0 }}</p>
-          <p>YURT : {{ el?.accommodations[0]?.yurt || 0 }}</p>
-          <p>TENT : {{ el?.accommodations[0]?.tent || 0 }}</p>
+          {{ el.title && el.title }}
         </td>
         <td class="p-3 border">
-          {{ el.pay_type }}
+          {{ el.featuredImage && el.featuredImage }}
+        </td>
+        <td class="p-3 border">
+          {{ el.price && el.price }}
+        </td>
+        <td class="p-3 border">
+          <Modal
+            :data="el"
+            :delete_user="delete_user"
+            :index="index"
+            :category="category"
+          />
         </td>
       </tr>
     </tbody>
@@ -56,10 +60,10 @@
 
 <script >
 import { defineComponent } from "vue";
-
+import Modal from "./edit_modal.vue";
 export default defineComponent({
   name: "table-components",
-  components: {},
+  components: { Modal },
   props: {
     data: Object,
     keyword: {

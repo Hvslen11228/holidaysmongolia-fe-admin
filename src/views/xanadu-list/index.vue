@@ -1,18 +1,53 @@
 <template>
   <!-- body -->
   <div
-    class="w-full min-h-screen bg-gray-100 pt-16 pl-64 overflow-auto overflow-y-scroll"
+    class="
+      w-full
+      min-h-screen
+      bg-gray-100
+      pt-16
+      pl-64
+      overflow-auto overflow-y-scroll
+    "
   >
     <div class="p-8 text-sm text-gray-800">
       <div class="flex justify-between">
         <h1 class="text-4xl text-gray-700 font-bold leading-none mb-8">
-          Orders
+          Xanadu
         </h1>
-        <div></div>
+        <div>
+          <Button
+            className=""
+            type="button"
+            title="Нэмэх"
+            :loading="false"
+            @click="
+              (event) => {
+                modal.show = true;
+              }
+            "
+          />
+        </div>
       </div>
+      <Modal :modal="modal" :data="data" :category="category" />
       <input
         v-model="keyword"
-        class="appearance-none block w-[33%] px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 mb-2"
+        class="
+          appearance-none
+          block
+          w-[33%]
+          px-3
+          py-2
+          border border-gray-300
+          rounded-md
+          placeholder-gray-400
+          focus:outline-none focus:shadow-outline-blue focus:border-blue-300
+          transition
+          duration-150
+          ease-in-out
+          sm:text-sm sm:leading-5
+          mb-2
+        "
         placeholder="Хайх..."
       />
       <Table
@@ -24,7 +59,20 @@
       />
       <div
         v-else
-        class="w-full flex justify-center py-2 px-4 border border-gray-500 text-sm font-medium rounded-md transition duration-150 ease-in-out"
+        class="
+          w-full
+          flex
+          justify-center
+          py-2
+          px-4
+          border border-gray-500
+          text-sm
+          font-medium
+          rounded-md
+          transition
+          duration-150
+          ease-in-out
+        "
       >
         <svg
           class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-600"
@@ -54,11 +102,12 @@
 <script >
 import Button from "../../components/button.vue";
 import Table from "./components/table.vue";
+import Modal from "./components/modal.vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 export default defineComponent({
   name: "HomeView",
-  components: { Button, Table },
+  components: { Button, Table, Modal },
   data() {
     return {
       data: null,
@@ -74,14 +123,15 @@ export default defineComponent({
   computed: {
     filterData() {
       const { data, keyword } = this;
-      console.log(data);
-        return data;
+      return data.filter(({ title }) =>
+        title.toLowerCase().includes(keyword.toLowerCase())
+      );
     },
   },
   methods: {
     async delete_user(id, index) {
       this.data.splice(index, 1);
-      await axios.delete("complex/" + id);
+      await axios.delete("xanadu/" + id);
     },
   },
   created: async function () {
@@ -93,7 +143,9 @@ export default defineComponent({
   },
   mounted: async function () {
     this.$store.dispatch("pathname", location.hash);
-    const result = await axios.get("order/xanadu/alldata");
+    const result = await axios.get("xanadu");
+    const result_category = await axios.get("category");
+    this.category = result_category.data.data;
     this.data = result.data.data;
     this.loading = false;
   },
