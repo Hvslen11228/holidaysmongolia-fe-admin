@@ -28,12 +28,14 @@
           {{ el._id }}
         </td>
 <td class="p-3 border" width="50px">
-  <template v-if="el.user && el.user.length > 0">
-    {{ el.user[0].first_name + " " + el.user[0].last_name + " " + el.user[0].user_email }}
-  </template>
-  <template v-else>
-    {{ el.user_email + " " + el.user_name }}
-  </template>
+          {{
+            el?.user[0]?.first_name +
+            " " +
+            el?.user[0]?.last_name +
+            " " +
+            el?.user[0]?.user_email
+          }}
+          {{ el?.user_email + " " + el?.user_name }}
 </td>
         <td class="p-3 border" width="50px">
           <code>{{ el.amount }} $</code>
