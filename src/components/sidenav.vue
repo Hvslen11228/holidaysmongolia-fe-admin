@@ -90,8 +90,8 @@ export default defineComponent({
           icon: "",
         },
         {
-          href: "/complex",
-          name: "complex",
+          href: "/hotels",
+          name: "hotels",
           icon: "",
         },
         {

@@ -54,8 +54,8 @@ const routes = [
     component: video,
   },
   {
-    path: "/complex",
-    name: "complex",
+    path: "/hotels",
+    name: "hotels",
     component: complex,
   },
   {

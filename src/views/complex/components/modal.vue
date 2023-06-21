@@ -1077,7 +1077,7 @@ export default defineComponent({
         authorId: this.$store.getters.user._id,
         pre_payment: 0,
         date: "May 20, 2021",
-        href: "/listing-detail-2",
+        href: "/hotel-detail",
         listingCategoryId: "62f498084813210f1dba09c3",
         title: "generate interactive markets",
         featuredImage:
